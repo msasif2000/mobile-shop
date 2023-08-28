@@ -16,33 +16,42 @@
 
     <main class=" bg-gray-100">
         <section class="mx-auto container">
-            <div class=" p-4">
+            <div class="p-4">
                 <input id="search-field" type="text" placeholder="Search here"
                     class="input input-bordered w-full max-w-xs" />
-                <button onclick="handleSearch()" class="btn btn-accent">Search</button>
+                <button onclick="handleSearch()" class="btn btn-accent  text-white font-semibold ml-2">Search</button>
             </div>
             <section>
-                <div id="phone-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 bg-gray-200">
-                    <!-- <div class="card w-96 bg-gray-100 shadow-xl">
-                        <figure><img src="/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg" alt="Shoes" /></figure>
-                        <div class="card-body">
-                          <h2 class="card-title">Shoes!</h2>
-                          <p>If a dog chews shoes whose shoes does he choose?</p>
-                          <div class="card-actions justify-end">
-                            <button class="btn btn-primary">Buy Now</button>
-                          </div>
-                        </div>
-                      </div> -->
+                <div id="loading" class="text-center my-4 hidden">
+                    <span class="loading loading-ring text-primary loading-lg"></span>
+                </div>
+                <div id="phone-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                 </div>
                 <!-- show all button -->
-                <button id="show-all" class="btn btn-accent hidden my-4 mx-auto flex justify-center">Show all</button>
+                <div class="text-center ">
+                    <button onclick="handleShowAll()" id="show-all"
+                        class="btn btn-accent hidden my-4 mx-auto text-white font-semibold">Show all</button>
+                </div>
             </section>
+
+            <!-- Open the modal using ID.showModal() method -->
+            <dialog id="show_details_modal" class="modal modal-bottom sm:modal-middle">
+                <form method="dialog" class="modal-box">
+                    <h3 class="font-bold text-lg">Hello!</h3>
+                    <p class="py-4">Press ESC key or click the button below to close</p>
+                    <div class="modal-action">
+                        <!-- if there is a button in form, it will close the modal -->
+                        <button class="btn">Close</button>
+                    </div>
+                </form>
+            </dialog>
         </section>
     </main>
 
     <footer>
 
     </footer>
+
     <!-- Script -->
     <script src="phone.js"></script>
 </body>
