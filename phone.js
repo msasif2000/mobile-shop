@@ -29,10 +29,11 @@ const displayPhones = (phones, isShowAll) => {
         phoneCard.classList = `card shadow-xl p-4 bg-white`;
         //3 set innerHTML
         phoneCard.innerHTML = `
-        <figure><img src="${phone.image}" alt="Mobile" class="rounded-2xl border-2 border-purple-400"/></figure>
+        <figure><img src="${phone.image}" alt="Mobile"/></figure>
         <div class="card-body">
-          <h2 class="card-title">${phone.phone_name}</h2>
-          <p>If a dog chews shoes whose shoes does he choose?</p>
+          <h2 class="font-bold text-xl text-center">${phone.phone_name}</h2>
+          <p class="text-center">Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit</p>
+          <p class="text-center font-bold text-xl">$999</p>
           <div class="card-actions justify-center">
             <button onclick="handleShowDetail('${phone.slug}')" class="btn btn-primary">Show Details</button>
           </div>
@@ -72,15 +73,31 @@ const toggleLoadingSpinner =(isLoading)=>{
 //handle show detail
 const handleShowDetail= async (id) => {
     //console.log(id);
-    const res =await fetch(`https://openapi.programming-hero.com/api/phones/${id}`)
+    const res =await fetch(`https://openapi.programming-hero.com/api/phone/${id}`)
     const data = await res.json();
-    //console.log(data);
+    console.log(data);
     const phone= data.data;
     showPhoneDetail(phone);
 }
 
 
 const showPhoneDetail = (phone) => {
+   // console.log(phone);
+    const showDetailContainer = document.getElementById('show-detail-container');
+    showDetailContainer.innerHTML = `
+    <div class="bg-sky-200 rounded-xl">
+    <img class="h-[300px] mx-auto p-4 rounded-2xl" src="${phone.image}" alt="Mobile"/>
+    </div>
+    <p class="font-bold">${phone.name}</p>
+    <p><span class="font-bold">Storage: </span> ${phone.mainFeatures.storage}</p>
+    <p><span class="font-bold">Display Size: </span> ${phone.mainFeatures.displaySize}</p>
+    <p><span class="font-bold">Chipset: </span> ${phone.mainFeatures.chipSet}</p>
+    <p><span class="font-bold">Memory: </span> ${phone.mainFeatures.memory}</p>
+    <p><span class="font-bold">Slug: </span> ${phone.slug}</p>
+    <p><span class="font-bold">Release Date: </span> ${phone.releaseDate}</p>
+    <p><span class="font-bold">Brand: </span> ${phone.brand}</p>
+    <p><span class="font-bold">GPS: </span> ${phone.others?.GPS || 'No GPS Available'}</p>
+    `;
     show_details_modal.showModal();
 }
 //handle show all
